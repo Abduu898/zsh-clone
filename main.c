@@ -28,8 +28,11 @@ while (1){
   // printf("Input : %s", input);
 
   args = parse_input(input);
-
-}
+    for (size_t i = 0; args[i] != NULL; i++){
+        printf("Args : %s",args[i]);
+    }
+    
+    }
 }
 
 int main(int argc, char** argv, char **env){
