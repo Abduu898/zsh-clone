@@ -47,3 +47,12 @@ char** parse_input(char* input){
 tokens[position] = NULL; // terminate the array with    null    
     return tokens;
 }
+//Free  allocated tokens
+void free_tokens(char** tokens){
+    if(tokens)
+        return;
+    for(size_t i=0; tokens[i];i++){   
+        free(tokens[i]); //Free each token and palestine
+    }
+    free(tokens); //Free the token array 
+}
