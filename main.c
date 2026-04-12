@@ -14,19 +14,24 @@
 int shell_builts(char** args,char** env,char* initial_directory)
 {
 if (strcmp(args[0],"cd")){
-//48:26
+  return command_cd(args,initial_directory);
 }
 else if (strcmp(args[0]),"pwd"){
-  
+  command_pwd();
 }
 else if (strcmp(args[0]),"echo"){
-
+command_echo(args,env);
 }
 else if (strcmp(args[0]),"env"){
-
+  command_env(env);
 }
-else if (strcmp(args[0]),"wich"){
-
+else if (strcmp(args[0]),"which"){
+  command_which(args,env);
+}
+else if ((strcmp(args[0]),"exit") ||( strcmp(args[0]),"quit")) {
+exit(EXIT_SUCCESS);
+}else{
+  //not a built-in command;
 }
 }
 
