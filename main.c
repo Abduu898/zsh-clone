@@ -1,5 +1,5 @@
 #include "my_shell.h"
-
+#include <string.h>
 // shell loop 
 // input Parsing ( so we can exe )
 // commands execution:
@@ -13,26 +13,32 @@
 // cd , pwd , echo , env , setenv ,wich , exit1, 
 int shell_builts(char** args,char** env,char* initial_directory)
 {
-if (strcmp(args[0],"cd")){
-  return command_cd(args,initial_directory);
+  (void)env;
+  (void)initial_directory;
+  printf("Args[0] : %s\n",args[0]);
+
+if (my_strcmp(args[0],"cd") == 0){
+  // return command_cd(args,initial_directory);
 }
-else if (strcmp(args[0]),"pwd"){
-  command_pwd();
+else if (my_strcmp(args[0],"pwd")==0){
+  // command_pwd();
 }
-else if (strcmp(args[0]),"echo"){
-command_echo(args,env);
+else if (my_strcmp(args[0],"echo")==0){
+// command_echo(args,env);
 }
-else if (strcmp(args[0]),"env"){
-  command_env(env);
+else if (my_strcmp(args[0],"env")==0){
+ //  command_env(env);
 }
-else if (strcmp(args[0]),"which"){
-  command_which(args,env);
+else if (my_strcmp(args[0],"which")==0){
+ //  command_which(args,env);
 }
-else if ((strcmp(args[0]),"exit") ||( strcmp(args[0]),"quit")) {
-exit(EXIT_SUCCESS);
+else if (my_strcmp(args[0],"exit") ==0 || my_strcmp(args[0],"quit") == 0) {
+  printf("Exiting shell...\n");
+  exit(EXIT_SUCCESS);
 }else{
   //not a built-in command;
 }
+ return 0;
 }
 
 
@@ -67,6 +73,8 @@ void shell_loop(char **env){
     shell_builts(args, env, initial_directory);
     }
     free_tokens(args); 
+
+    
   }
 
 
@@ -81,6 +89,12 @@ void shell_loop(char **env){
 int main(int argc, char** argv, char **env){
     (void)argc;
     (void)argv;
-shell_loop(env);
-return 0;
+    (void)env;
+    
+    shell_loop(env);
+
+  //just for testing the my_strcmp  char str1[] = "hello"; char str2[] = "hello";int result = my_strcmp(str1, str2);printf("Comparison result: %d\n", result); // Should print 0 for equal strings or 1 for different strings
+
+
+  return 0;
 }
