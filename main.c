@@ -52,14 +52,14 @@ void shell_loop(char **env){
   perror("getline");
   break;
  }
-  // printf("Input : %s", input);
+   // printf("Input : %s", input);
 
-  args = parse_input(input);
- //   for (size_t i = 0; args[i] != NULL; i++){
+   args = parse_input(input);
+   //   for (size_t i = 0; args[i] != NULL; i++){
         
       //  printf("Args : %s",args[i]);
     //    printf("\n");
-  //  }
+    //  }
     // we stoped at min 35:42 
    // }
 
