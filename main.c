@@ -10,16 +10,15 @@
 // Err Handling 
 
 
-// cd , pwd , echo , env , setenv ,wich , exit1, 
+// Built ins : cd , pwd , echo , env , setenv ,wich , exit1, 
+// Binary : ls , cat ...
 int shell_builts(char** args,char** env,char* initial_directory)
 {
   (void)env;
   (void)initial_directory;
-  printf("Args[0] : %s\n",args[0]);
-
+  
 if (my_strcmp(args[0],"cd") == 0){
-  printf("CD\n");
-  // return command_cd(args,initial_directory);
+  return command_cd(args,initial_directory);
 }
 else if (my_strcmp(args[0],"pwd")==0){
   // command_pwd();
@@ -38,6 +37,7 @@ else if (my_strcmp(args[0],"exit") ==0 || my_strcmp(args[0],"quit") == 0) {
   exit(EXIT_SUCCESS);
 }else{
   //not a built-in command;
+  //executor();
 }
  return 0;
 }
