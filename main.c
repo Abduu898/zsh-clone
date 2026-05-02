@@ -18,6 +18,7 @@ int shell_builts(char** args,char** env,char* initial_directory)
   printf("Args[0] : %s\n",args[0]);
 
 if (my_strcmp(args[0],"cd") == 0){
+  printf("CD\n");
   // return command_cd(args,initial_directory);
 }
 else if (my_strcmp(args[0],"pwd")==0){
@@ -66,7 +67,7 @@ void shell_loop(char **env){
       //  printf("Args : %s",args[i]);
     //    printf("\n");
     //  }
-    // we stoped at min 35:42 
+  
    // }
 
     if(args[0]!=NULL){
