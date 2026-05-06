@@ -5,6 +5,8 @@
 
 
 #define MAX_INPUT 1024
+#define MAX_PATH 256
+
 
 char** parse_input(char* input);
 void free_tokens(char** tokens);
