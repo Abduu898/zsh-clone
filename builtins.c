@@ -19,7 +19,22 @@ int command_cd(char** args,char* initial_directory){
     return 0;
     
 }
-int command_pwd();
+int command_pwd(){
+   char* cwd= NULL;
+
+  
+  // Use dynamic allocation to get the current working directory
+  // getcwd(NULL,0) be like We know you'll need to allocate memory for the path, so we'll just do it for you!
+   cwd = getcwd(NULL,0);
+  if (cwd != NULL) {
+    printf("PATH: %s\n", cwd);    
+    printf("%s\n",cwd);
+    free(cwd); // Free the allocated memory
+    } else {
+        perror("pwd");
+    }
+    return 0;
+}
 int command_echo(char** args,char** env);
 int command_env(char** env);
 int command_which(char** args,char** env);
