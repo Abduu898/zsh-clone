@@ -35,6 +35,17 @@ int command_pwd(){
     }
     return 0;
 }
-int command_echo(char** args,char** env);
+// echo hello world , echo -n hello world, echo -e "hello\nworld"
+
+int command_echo(char** args,char** env){
+int i=1; // for skipping the -n (new line)
+int new_line = 1; // Flag to determine if a new line should be printed
+
+if(args[1] !=NULL && my_strcmp(args[1],"-n") == 0){
+    new_line = 0; // Don't print a new line
+    i++; // Move the arguments pointer to skip the -n flag
+}
+
+// 30:09 
 int command_env(char** env);
 int command_which(char** args,char** env);
