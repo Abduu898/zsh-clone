@@ -1,6 +1,8 @@
 #include "my_shell.h"
 
-
+// 30:09 
+int command_env(char** env);
+int command_which(char** args,char** env);
 // cd, cd [path] : change the current working directory to the specified path. If no path is provided, it should change to the user's home directory.,cd - : change to the previous working directory.
 //cd ~ : change to the home directory.
 //handle non existing directories and print an appropriate error message.
@@ -38,14 +40,36 @@ int command_pwd(){
 // echo hello world , echo -n hello world, echo -e "hello\nworld"
 
 int command_echo(char** args,char** env){
-int i=1; // for skipping the -n (new line)
+
 int new_line = 1; // Flag to determine if a new line should be printed
+size_t i=1; // for skipping the -n (new line)
 
 if(args[1] !=NULL && my_strcmp(args[1],"-n") == 0){
     new_line = 0; // Don't print a new line
     i++; // Move the arguments pointer to skip the -n flag
 }
 
-// 30:09 
-int command_env(char** env);
-int command_which(char** args,char** env);
+//What is $ in a Shell?
+// In every shell (bash, zsh, your shell), $ tells the shell "this is a variable".
+// Think of it like a magic symbol that says: "Don't print this literally - look up its value!"
+
+//Processes the remaining args 
+for (;  args[i]; i++){
+   if(args[i][0] == '$'){//handle enviroment vars
+    (void)env;
+     }else {
+        printf("%s ",args[i]);
+        }
+
+        if ( args[i+1] !=NULL ){
+        printf(" ");
+        }
+
+        
+
+    }if(new_line) {
+        printf("\n");
+        }
+    return 0;
+
+}
