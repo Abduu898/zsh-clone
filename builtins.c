@@ -44,32 +44,35 @@ int command_echo(char** args,char** env){
 int new_line = 1; // Flag to determine if a new line should be printed
 size_t i=1; // for skipping the -n (new line)
 
-if(args[1] !=NULL && my_strcmp(args[1],"-n") == 0){
-    new_line = 0; // Don't print a new line
-    i++; // Move the arguments pointer to skip the -n flag
-}
+
+
 
 //What is $ in a Shell?
 // In every shell (bash, zsh, your shell), $ tells the shell "this is a variable".
 // Think of it like a magic symbol that says: "Don't print this literally - look up its value!"
-
+    while(args[i] != NULL && my_strcmp(args[i], "-n") == 0) {
+        new_line = 0;
+        i++;  // Skip all -n flags
+    }
 //Processes the remaining args 
 for (;  args[i]; i++){
    if(args[i][0] == '$'){//handle enviroment vars
-    (void)env;
-     }else {
-        printf("%s ",args[i]);
-        }
-
-        if ( args[i+1] !=NULL ){
-        printf(" ");
-        }
-
+        char* value= getenv(args[i]+1); // Skip the '$' character
+        if(value != NULL){
+            printf("%s", value);
+        }else if(!getenv(args[i]+1)){
+            printf(" "); // Print nothing if the variable is not found
         
+        
+        } else {
+        printf("%s",args[i]);
+        }
+
+    }
 
     }if(new_line) {
         printf("\n");
         }
     return 0;
+ }
 
-}
