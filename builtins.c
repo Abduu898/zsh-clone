@@ -40,7 +40,7 @@ int command_pwd(){
 // echo hello world , echo -n hello world, echo -e "hello\nworld"
 
 int command_echo(char** args,char** env){
-
+ (void)env; // Unused parameter
 int new_line = 1; // Flag to determine if a new line should be printed
 size_t i=1; // for skipping the -n (new line)
 
