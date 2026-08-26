@@ -57,10 +57,10 @@ size_t i=1; // for skipping the -n (new line)
 //Processes the remaining args 
 for (;  args[i]; i++){
    if(args[i][0] == '$'){//handle enviroment vars
-        char* value= getenv(args[i]+1); // Skip the '$' character
+        char* value=my_getenv(args[i]+1, env); // Skip the '$' character
         if(value != NULL){
             printf("%s", value);
-        }else if(!getenv(args[i]+1)){
+        }else if(!my_getenv(args[i]+1, env)){
             printf(" "); // Print nothing if the variable is not found
         
         
