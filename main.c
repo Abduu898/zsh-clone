@@ -12,6 +12,27 @@
 
 // Built ins : cd , pwd , echo , env , setenv ,wich , exit1, 
 // Binary : ls , cat ...
+int execute_external(char** args)
+{
+  pid_t child_pid = fork();
+  int status;
+
+  if (child_pid == -1) {
+    perror("fork");
+    return 1;
+  }
+  if (child_pid == 0) {
+    execvp(args[0], args);
+    perror(args[0]);
+    exit(EXIT_FAILURE);
+  }
+  if (waitpid(child_pid, &status, 0) == -1) {
+    perror("waitpid");
+    return 1;
+  }
+  return WIFEXITED(status) ? WEXITSTATUS(status) : 1;
+}
+
 int shell_builts(char** args,char** env,char* initial_directory)
 {
   (void)env;
@@ -33,12 +54,14 @@ else if (my_strcmp(args[0],"env")==0){
 else if (my_strcmp(args[0],"which")==0){
  //  command_which(args,env);
 }
+else if (my_strcmp(args[0],"ls") == 0 || my_strcmp(args[0],"cat") == 0){
+  return execute_external(args);
+}
 else if (my_strcmp(args[0],"exit") ==0 || my_strcmp(args[0],"quit") == 0) {
   printf("Exiting shell...\n");
   exit(EXIT_SUCCESS);
 }else{
-  //not a built-in command;
-  //executor();
+  fprintf(stderr, "%s: command not found\n", args[0]);
 }
  return 0;
 }

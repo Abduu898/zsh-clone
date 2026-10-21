@@ -8,8 +8,12 @@ A lightweight Unix shell implementation written in pure C, inspired by Zsh.
 - ✅ Built-in commands:
   - `cd [dir]` - Change current directory
   - `pwd` - Print working directory  
+  - `echo [text]` - Print text, with `-n` and environment variable support
   - `exit` / `quit` - Exit the shell
-- ✅ External command execution (coming soon)
+- ✅ External commands:
+  - `ls [options] [path]` - List directory contents
+  - `cat [file]` - Print file contents
+- ⚠️ Other external commands are not supported yet
 - ✅ Environment variable management (coming soon)
 - ✅ Dynamic memory management
 

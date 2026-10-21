@@ -20,6 +20,7 @@ int command_pwd(void);
 int command_echo(char** args, char** env);
 int command_env(char** env);
 int command_which(char** args, char** env);
+int execute_external(char** args);
 int shell_builts(char** args, char** env, char* initial_directory);
 
 // Function declarations - Helpers

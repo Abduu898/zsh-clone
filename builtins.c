@@ -42,6 +42,7 @@ int command_pwd(){
 int command_echo(char** args,char** env){
  (void)env; // Unused parameter
 int new_line = 1; // Flag to determine if a new line should be printed
+int first_argument = 1;
 size_t i=1; // for skipping the -n (new line)
 
 
@@ -56,21 +57,21 @@ size_t i=1; // for skipping the -n (new line)
     }
 //Processes the remaining args 
 for (;  args[i]; i++){
+    if (!first_argument) {
+         printf(" ");
+    }
+    first_argument = 0;
    if(args[i][0] == '$'){//handle enviroment vars
         char* value=my_getenv(args[i]+1, env); // Skip the '$' character
         if(value != NULL){
             printf("%s", value);
-        }else if(!my_getenv(args[i]+1, env)){
-            printf(" "); // Print nothing if the variable is not found
-        
-        
-        } else {
-        printf("%s",args[i]);
-        }
-
+        } // Print nothing if the variable is not found
+    } else {
+        printf("%s", args[i]);
     }
 
-    }if(new_line) {
+    }
+    if(new_line) {
         printf("\n");
         }
     return 0;
